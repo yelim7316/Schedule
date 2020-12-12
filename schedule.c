@@ -80,23 +80,45 @@ void sched_print(void* obj)
 void* sched_genSchedInfo(char* name, char* place, int type, int month, int day)
 {
 	schedInfo_t* schedPtr;
-	
-	if(schedPtr == NULL)  //error handler
+
+	//error handler
+	if(schedPtr == NULL)  
 	{
 		printf(" error!\n ");
 		return -1;
 		
 	}
 	
-	//allocate memory and set the member variables
-	schedPtr = (struct schedInfo_t*) malloc(5*sizeof(struct schedInfo));  
-	 
-	name = schedPtr.name;
-	place = schedPtr.place;
-	type = schedPtr.type;
-	month = schedPtr.month;
-	day = schedPtr.day;
+	//allocate memory and set the member variables 
+	schedInfo_t* schedPtr = (schedInfo_t*)malloc(sizeof(schedInfo_t));
 	
+	strcpy(schedPtr->name, name);
+	strcpy(schedPtr->place, place);
+	
+	switch(type)
+	{
+		case 0:	schedPtr->type = drama;
+			break;
+		case 1:	schedPtr->type = movie;
+			break;
+		case 2:	schedPtr->type = advertisement;
+			break;
+		case 3:	schedPtr->type = entertainment;
+			break;
+		case 4:	schedPtr->type = meeting;
+			break;
+		case 5:	schedPtr->type = fitness;
+			break;
+		case 6:	schedPtr->type =  privacy;
+			break;
+		default:
+			break;
+			
+	}
+	
+	schedPtr->month = month;
+	schedPtr->day = day;
+
 	return (void*)schedPtr;
 }
 
