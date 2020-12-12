@@ -27,12 +27,12 @@ char month_string[13][4] =
 //enum definitions
 typedef enum scheduleType {
 	drama=0, 		//드라마 
-	movie, 			//영화 
-	advertisement, 	//광고 
-	entertainment, 	//예능 
-	meeting,		//회의 
-	fitness,		//운동 
-	privacy			//개인사 
+	movie=1, 			//영화 
+	advertisement=2, 	//광고 
+	entertainment=3, 	//예능 
+	meeting=4,		//회의 
+	fitness=5,		//운동 
+	privacy=6			//개인사 
 } scheduleType_e;
 
 
@@ -52,8 +52,9 @@ void sched_printTypes(void)
 {
 	int i;
 	
-	for (i=0;i<MAX_TYPE;i++) {
-		printf("- %s\n", i, type_string[i]);
+	for (i=0;i<MAX_TYPE;i++) 
+	{
+		printf("  %s\n",type_string[i]);
 	}
 }
 
@@ -68,35 +69,31 @@ void sched_print(void* obj)
 	printf("Schedule Name : %s (%s)\n", schedPtr->name, type_string[schedPtr->type]);
 	printf("When : %s. %i\n", month_string[schedPtr->month], schedPtr->day);
 	printf("Where : %s\n", schedPtr->place);
+	printf("--------------------------------------------\n");
 	
 	return;
 }
 
 
-
-
-
 //generating a structure of scheduling information
 void* sched_genSchedInfo(char* name, char* place, int type, int month, int day)
 {
-	schedInfo_t* schedPtr;
+	schedInfo_t* schedPtr = (schedInfo_t*)malloc(sizeof(schedInfo_t));
 
 	//error handler
 	if(schedPtr == NULL)  
 	{
 		printf(" error!\n ");
-		return -1;
+		return (void*)-1;
 		
 	}
-	
-	//allocate memory and set the member variables 
-	schedInfo_t* schedPtr = (schedInfo_t*)malloc(sizeof(schedInfo_t));
-	
+
+	//allocate memory and set the member variables
 	strcpy(schedPtr->name, name);
 	strcpy(schedPtr->place, place);
 	
-	switch(type)
-	{
+	
+	switch(type){
 		case 0:	schedPtr->type = drama;
 			break;
 		case 1:	schedPtr->type = movie;
@@ -115,10 +112,10 @@ void* sched_genSchedInfo(char* name, char* place, int type, int month, int day)
 			break;
 			
 	}
-	
+
 	schedPtr->month = month;
 	schedPtr->day = day;
-
+	
 	return (void*)schedPtr;
 }
 
@@ -130,7 +127,6 @@ float sched_getMonth(void* obj)
 	schedInfo_t* schedPtr = (schedInfo_t*)obj;
 
 	return schedPtr->month;
-	
 }
 
 
@@ -140,7 +136,6 @@ int sched_getType(void* obj)
 	schedInfo_t* schedPtr = (schedInfo_t*)obj;
 
 	return schedPtr->type;
-	
 }
 
 
@@ -151,12 +146,19 @@ char* sched_getPlace(void* obj)
 	schedInfo_t* schedPtr = (schedInfo_t*)obj;
 
 	return schedPtr->place;
-
 }
 
 //convert the name of the type into the enum(integer) value
 int sched_convertType(char* typeName)
 {
-	
+	if (strcmp(typeName, "drama") == 0) { return 0; }
+	else if (strcmp(typeName, "movie") == 0) { return 1; }
+	else if (strcmp(typeName, "advertisement") == 0) { return 2; }
+	else if (strcmp(typeName, "entertainment") == 0) { return 3; }
+	else if (strcmp(typeName, "meeting") == 0) { return 4; }
+	else if (strcmp(typeName, "fitness") == 0) { return 5; }
+	else if (strcmp(typeName, "privacy") == 0) { return 6; }
+	else return -1;
 }
+
 
