@@ -97,15 +97,25 @@ int main(int argc, char *argv[]) {
 			case 2:
 				printf("which month ? : ");
 				scanf("%i", &month);
+				printf("\n\n\n--------------------------------------------\n");
 				
+				cnt = 1;
 				ndPtr = list;
 				while (list_isEndNode(ndPtr) == 0)
 				{
-					//file code here -- print scheduling info elements matching to the month
-					ndPtr = list_getNextNd(ndPtr); //get the next node from the list
+					
+					ndPtr = list_getNextNd(ndPtr);     //get the next node from the list
 					schedInfo = list_getNdObj(ndPtr); //get the object (scheduling info)
 					
-					//fill code this part - end
+					// print scheduling info elements matching to the month 
+					
+					if (sched_getMonth(schedInfo) == month)
+					{
+						printf("%d. ", cnt);
+						sched_print(schedInfo);
+						cnt++;
+					}
+					//fill code this part - end	
 				}
 				
 				break;
@@ -113,6 +123,9 @@ int main(int argc, char *argv[]) {
 			case 3:
 				printf("which place ? : ");
 				scanf("%s", place);
+				printf("\n\n\n--------------------------------------------\n");
+				
+				cnt = 1;
 				
 				ndPtr = list;
 				while (list_isEndNode(ndPtr) == 0)
@@ -120,6 +133,15 @@ int main(int argc, char *argv[]) {
 					//file code here -- print scheduling info elements matching to the place
 					ndPtr = list_getNextNd(ndPtr); //get the next node from the list
 					schedInfo = list_getNdObj(ndPtr); //get the object (scheduling info)
+					
+					//file code here -- print count and each scheduling info element
+					if () {
+						printf("%d. ", cnt);
+						sched_print(schedInfo);
+
+						cnt++;
+					}
+					
 					
 					//fill code this part - end
 				}
