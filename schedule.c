@@ -84,7 +84,7 @@ void* sched_genSchedInfo(char* name, char* place, int type, int month, int day)
 	if(schedPtr == NULL)  
 	{
 		printf(" error!\n ");
-		return (void*)-1;
+		return NULL;
 		
 	}
 
