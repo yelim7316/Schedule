@@ -69,7 +69,7 @@ int main(int argc, char *argv[]) {
 		printf("5. exit\n");
 		
 		//4. get option from keyboard
-		printf("select an option: ");
+		printf("\n select an option: ");
 		scanf("%d", &option);
 		
 		switch(option)
@@ -83,13 +83,11 @@ int main(int argc, char *argv[]) {
 				{
 					//print count and each scheduling info element
 					
-					ndPtr = list_getNextNd(ndPtr); //get the object (scheduling info)
-					printf("%d. ", cnt);
-					schedInfo = list_getNdObj(ndPtr); //get the next node from the list
-					sched_print(schedInfo);
-					
+					ndPtr = list_getNextNd(ndPtr);     //get the object (scheduling info)
+					printf("%d. ", cnt);               // print count
+					schedInfo = list_getNdObj(ndPtr);  //get the next node from the list
+					sched_print(schedInfo);            //print each scheduling info element
 					cnt++;
-					//fill code this part - end
 				}
 				
 				break;
@@ -115,7 +113,7 @@ int main(int argc, char *argv[]) {
 						sched_print(schedInfo);
 						cnt++;
 					}
-					//fill code this part - end	
+
 				}
 				
 				break;
@@ -131,19 +129,18 @@ int main(int argc, char *argv[]) {
 				while (list_isEndNode(ndPtr) == 0)
 				{
 					//file code here -- print scheduling info elements matching to the place
-					ndPtr = list_getNextNd(ndPtr); //get the next node from the list
+					ndPtr = list_getNextNd(ndPtr);     //get the next node from the list
 					schedInfo = list_getNdObj(ndPtr); //get the object (scheduling info)
 					
-					//file code here -- print count and each scheduling info element
-					if (strcmp(sched_getPlace(schedInfo), place)==0) {
+					//print count and each scheduling info element
+					if (strcmp(sched_getPlace(schedInfo), place)==0) 
+					{
 						printf("%d. ", cnt);
 						sched_print(schedInfo);
 
 						cnt++;
 					}
 					
-					
-					//fill code this part - end
 				}
 				
 				break;
@@ -155,7 +152,9 @@ int main(int argc, char *argv[]) {
 				scanf("%s", typeName);
 				
 				printf("\n\n\n--------------------------------------------\n");
-				if (sched_convertType(typeName)>=0 && sched_convertType(typeName) <= 5)/* fill code here -- convert the type and check if the type is valid */
+				
+				/* convert the type and check if the type is valid */
+				if (sched_convertType(typeName)>=0 && sched_convertType(typeName) <= 5)
 				{
 					cnt = 1;
 					ndPtr = list;
@@ -165,7 +164,7 @@ int main(int argc, char *argv[]) {
 						ndPtr = list_getNextNd(ndPtr); //get the next node from the list
 						schedInfo = list_getNdObj(ndPtr); //get the object (scheduling info)
 						
-						//file code here -- print count and each scheduling info element
+						//print count and each scheduling info element
 						if (sched_getType(schedInfo) == sched_convertType(typeName)) 
 						{
 							printf("%d. ", cnt);
@@ -173,7 +172,7 @@ int main(int argc, char *argv[]) {
 
 							cnt++;
 						}
-						//fill code this part - end
+
 					}
 				}
 				else

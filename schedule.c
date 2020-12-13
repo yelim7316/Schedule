@@ -26,12 +26,12 @@ char month_string[13][4] =
 
 //enum definitions
 typedef enum scheduleType {
-	drama=0, 		//드라마 
+	drama=0, 		    //드라마 
 	movie=1, 			//영화 
 	advertisement=2, 	//광고 
 	entertainment=3, 	//예능 
-	meeting=4,		//회의 
-	fitness=5,		//운동 
+	meeting=4,		    //회의 
+	fitness=5,		    //운동 
 	privacy=6			//개인사 
 } scheduleType_e;
 
@@ -78,7 +78,7 @@ void sched_print(void* obj)
 //generating a structure of scheduling information
 void* sched_genSchedInfo(char* name, char* place, int type, int month, int day)
 {
-	schedInfo_t* schedPtr = (schedInfo_t*)malloc(sizeof(schedInfo_t));
+	schedInfo_t* schedPtr = (schedInfo_t*)malloc(sizeof(schedInfo_t)); //allocate memory
 
 	//error handler
 	if(schedPtr == NULL)  
@@ -88,12 +88,12 @@ void* sched_genSchedInfo(char* name, char* place, int type, int month, int day)
 		
 	}
 
-	//allocate memory and set the member variables
+	//set the member variables
 	strcpy(schedPtr->name, name);
 	strcpy(schedPtr->place, place);
 	
-	
-	switch(type){
+	switch(type)
+	{
 		case 0:	schedPtr->type = drama;
 			break;
 		case 1:	schedPtr->type = movie;
@@ -125,6 +125,14 @@ void* sched_genSchedInfo(char* name, char* place, int type, int month, int day)
 float sched_getMonth(void* obj)
 {
 	schedInfo_t* schedPtr = (schedInfo_t*)obj;
+	
+	//error handler
+	if(schedPtr == NULL)  
+	{
+		printf(" error!\n ");
+		return -1;
+		
+	}
 
 	return schedPtr->month;
 }
@@ -134,6 +142,14 @@ float sched_getMonth(void* obj)
 int sched_getType(void* obj)
 {
 	schedInfo_t* schedPtr = (schedInfo_t*)obj;
+	
+	//error handler
+	if(schedPtr == NULL)  
+	{
+		printf(" error!\n ");
+		return -1;
+		
+	}
 
 	return schedPtr->type;
 }
@@ -144,6 +160,14 @@ int sched_getType(void* obj)
 char* sched_getPlace(void* obj)
 {
 	schedInfo_t* schedPtr = (schedInfo_t*)obj;
+	
+	//error handler
+	if(schedPtr == NULL)  
+	{
+		printf(" error!\n ");
+		return (void*)-1;
+		
+	}
 
 	return schedPtr->place;
 }
