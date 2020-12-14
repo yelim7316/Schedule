@@ -41,7 +41,7 @@ node_t* travelList(node_t* ndPtr, int offset)
 	//repeat travelling until the node is the end or offset becomes 0
 	while ( list_isEndNode(ndPtr) == 0 && offset != 0)
 	{
-		ndPtr = ndPtr->next;
+		ndPtr = (node_t*)ndPtr->next;
 		offset--;
 	}
 	
@@ -55,7 +55,7 @@ int updateIndex(node_t* ndPtr)
 	
 	while ( list_isEndNode(ndPtr) == 0 )//travel until it is the end node
 	{
-		ndPtr = ndPtr->next; //travel once
+		ndPtr = (node_t*)ndPtr->next; //travel once
 		ndPtr->index = ++index;
 		len++;//increase the length variable
 	}
@@ -103,6 +103,7 @@ void* list_genList(void)
 */
 int list_addTail(void* obj, void* list)
 {
+	node_t* listPtrRoot = (node_t*)list;
 	node_t* listPtr = (node_t*)list;
 	node_t* ndPtr;
 	node_t* newNdPtr;
@@ -124,7 +125,7 @@ int list_addTail(void* obj, void* list)
 	newNdPtr->obj = obj;
 	
 	//add node to the list tail
-	listPtr = travelList(list, LIST_END);
+	listPtr = (node_t*)travelList(listPtrRoot, LIST_END);
 	listPtr->next = newNdPtr;
 	newNdPtr->index = listPtr->index+1;
 	
@@ -165,7 +166,7 @@ int list_addNext(void* obj, void* nd)
 	newNdPtr->obj = obj;
 	
 	//add node to the next tail
-	nextNdPtr = ndPtr->next;
+	nextNdPtr = (node_t*)ndPtr->next;
 	
 	ndPtr->next = newNdPtr;
 	newNdPtr->index = ndPtr->index+1;
@@ -224,7 +225,7 @@ int list_len(void* list)
 	
 	while ( list_isEndNode(listPtr) == 0 )//travel until it is the end node
 	{
-		listPtr = listPtr->next; //travel once
+		listPtr =(node_t*) listPtr->next; //travel once
 		len++;//increase the length variable
 	}
 	
@@ -280,7 +281,7 @@ void* list_getIndexNd(int index, void* list)
 	
 	while (list_isEndNode(listPtr) == 0 )//travel until it is the end node
 	{
-		listPtr = listPtr->next;
+		listPtr = (node_t*)listPtr->next;
 		if (listPtr->index == index)
 		{
 			return listPtr;
@@ -313,7 +314,7 @@ void* list_srchNd(int (*matchFunc)(void* obj, void* cond), void* cond, void* lis
 	
 	while (list_isEndNode(listPtr) == 0 ) //travel until it is the end node
 	{
-		listPtr = listPtr->next;
+		listPtr = (node_t*)listPtr->next;
 		if (matchFunc(listPtr->obj, cond) == 1)
 		{
 			return listPtr;
@@ -351,7 +352,7 @@ int list_repeatFunc(void (*func)(void* obj), void* list)
 	
 	while ( list_isEndNode(listPtr) == 0 )//travel until it is the end node
 	{
-		listPtr = listPtr->next; //travel once
+		listPtr = (node_t*)listPtr->next; //travel once
 		func(listPtr->obj);
 		len++;//increase the length variable
 	}
@@ -381,5 +382,6 @@ void* list_getNdObj(void* nd)
 	
 	return (void*)ndPtr->obj;
 }
+
 
 

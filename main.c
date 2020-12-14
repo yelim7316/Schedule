@@ -81,8 +81,6 @@ int main(int argc, char *argv[]) {
 				ndPtr = list;
 				while (list_isEndNode(ndPtr) == 0)
 				{
-					//print count and each scheduling info element
-					
 					ndPtr = list_getNextNd(ndPtr);     //get the object (scheduling info)
 					printf("%d. ", cnt);               // print count
 					schedInfo = list_getNdObj(ndPtr);  //get the next node from the list
@@ -106,7 +104,6 @@ int main(int argc, char *argv[]) {
 					schedInfo = list_getNdObj(ndPtr); //get the object (scheduling info)
 					
 					// print scheduling info elements matching to the month 
-					
 					if (sched_getMonth(schedInfo) == month)
 					{
 						printf("%d. ", cnt);
@@ -128,15 +125,15 @@ int main(int argc, char *argv[]) {
 				ndPtr = list;
 				while (list_isEndNode(ndPtr) == 0)
 				{
-					//file code here -- print scheduling info elements matching to the place
+				
 					ndPtr = list_getNextNd(ndPtr);     //get the next node from the list
 					schedInfo = list_getNdObj(ndPtr); //get the object (scheduling info)
-					
-					//print count and each scheduling info element
+					 
+					// print scheduling info elements matching to the place
 					if (strcmp(sched_getPlace(schedInfo), place)==0) 
 					{
-						printf("%d. ", cnt);
-						sched_print(schedInfo);
+						printf("%d. ", cnt);     //print count
+						sched_print(schedInfo);  // print each scheduling info element
 
 						cnt++;
 					}
@@ -153,22 +150,22 @@ int main(int argc, char *argv[]) {
 				
 				printf("\n\n\n--------------------------------------------\n");
 				
-				/* convert the type and check if the type is valid */
+				/* check the type and check if the type is valid */
 				if (sched_convertType(typeName)>=0 && sched_convertType(typeName) <= 5)
 				{
 					cnt = 1;
 					ndPtr = list;
 					while (list_isEndNode(ndPtr) == 0)
 					{
-						//file code here -- print scheduling info elements matching to the place
+
 						ndPtr = list_getNextNd(ndPtr); //get the next node from the list
-						schedInfo = list_getNdObj(ndPtr); //get the object (scheduling info)
-						
-						//print count and each scheduling info element
+						schedInfo = list_getNdObj(ndPtr); //get the object (scheduling info)	
+					
+						//check the type and print scheduling info elements
 						if (sched_getType(schedInfo) == sched_convertType(typeName)) 
 						{
-							printf("%d. ", cnt);
-							sched_print(schedInfo);
+							printf("%d. ", cnt);      //print count 
+							sched_print(schedInfo);    //print each scheduling info element
 
 							cnt++;
 						}
