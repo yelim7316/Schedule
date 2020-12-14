@@ -77,7 +77,7 @@ int main(int argc, char *argv[]) {
 			case 1: //print all the schedules
 				printf("printing all the schedules in the scheduler.....\n\n\n");
 				printf("--------------------------------------------\n");
-				cnt = 1;
+				cnt = 1;                               // to check the count of schedules
 				ndPtr = list;
 				while (list_isEndNode(ndPtr) == 0)
 				{
@@ -85,7 +85,7 @@ int main(int argc, char *argv[]) {
 					printf("%d. ", cnt);               // print count
 					schedInfo = list_getNdObj(ndPtr);  //get the next node from the list
 					sched_print(schedInfo);            //print each scheduling info element
-					cnt++;
+					cnt++;                             // increase count 
 				}
 				
 				break;
@@ -95,7 +95,7 @@ int main(int argc, char *argv[]) {
 				scanf("%i", &month);
 				printf("\n\n\n--------------------------------------------\n");
 				
-				cnt = 1;
+				cnt = 1;                               // to check the count of schedules
 				ndPtr = list;
 				while (list_isEndNode(ndPtr) == 0)
 				{
@@ -106,9 +106,9 @@ int main(int argc, char *argv[]) {
 					// print scheduling info elements matching to the month 
 					if (sched_getMonth(schedInfo) == month)
 					{
-						printf("%d. ", cnt);
-						sched_print(schedInfo);
-						cnt++;
+						printf("%d. ", cnt);       // print count
+						sched_print(schedInfo);    //print each scheduling info element
+						cnt++;                     //increase count
 					}
 
 				}
@@ -120,9 +120,9 @@ int main(int argc, char *argv[]) {
 				scanf("%s", place);
 				printf("\n\n\n--------------------------------------------\n");
 				
-				cnt = 1;
-				
+				cnt = 1;                              // to check the count of schedules
 				ndPtr = list;
+				
 				while (list_isEndNode(ndPtr) == 0)
 				{
 				
@@ -134,8 +134,7 @@ int main(int argc, char *argv[]) {
 					{
 						printf("%d. ", cnt);     //print count
 						sched_print(schedInfo);  // print each scheduling info element
-
-						cnt++;
+						cnt++;                   //increase count
 					}
 					
 				}
@@ -153,21 +152,20 @@ int main(int argc, char *argv[]) {
 				/* check the type and check if the type is valid */
 				if (sched_convertType(typeName)>=0 && sched_convertType(typeName) <= 5)
 				{
-					cnt = 1;
+					cnt = 1;                             // to check the count of schedules
 					ndPtr = list;
 					while (list_isEndNode(ndPtr) == 0)
 					{
 
-						ndPtr = list_getNextNd(ndPtr); //get the next node from the list
+						ndPtr = list_getNextNd(ndPtr);    //get the next node from the list
 						schedInfo = list_getNdObj(ndPtr); //get the object (scheduling info)	
 					
 						//check the type and print scheduling info elements
 						if (sched_getType(schedInfo) == sched_convertType(typeName)) 
 						{
-							printf("%d. ", cnt);      //print count 
+							printf("%d. ", cnt);       //print count 
 							sched_print(schedInfo);    //print each scheduling info element
-
-							cnt++;
+							cnt++;                    // increase count
 						}
 
 					}

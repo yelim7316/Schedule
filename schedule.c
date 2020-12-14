@@ -89,10 +89,10 @@ void* sched_genSchedInfo(char* name, char* place, int type, int month, int day)
 	}
 
 	//set the member variables
-	strcpy(schedPtr->name, name);
-	strcpy(schedPtr->place, place);
+	strcpy(schedPtr->name, name);    // name
+	strcpy(schedPtr->place, place);   // place
 	
-	switch(type)
+	switch(type)   // match type
 	{
 		case 0:	schedPtr->type = drama;
 			break;
@@ -113,8 +113,8 @@ void* sched_genSchedInfo(char* name, char* place, int type, int month, int day)
 			
 	}
 
-	schedPtr->month = month;
-	schedPtr->day = day;
+	schedPtr->month = month;   // month
+	schedPtr->day = day;       // day
 	
 	return (void*)schedPtr;
 }
@@ -124,7 +124,7 @@ void* sched_genSchedInfo(char* name, char* place, int type, int month, int day)
 //get month information from the scheduler info structure
 float sched_getMonth(void* obj)
 {
-	schedInfo_t* schedPtr = (schedInfo_t*)obj;  // get pointer
+	schedInfo_t* schedPtr = (schedInfo_t*)obj;  // using catsting obj and use struct schedInfo
 	
 	//error handler
 	if(schedPtr == NULL)  
@@ -141,7 +141,7 @@ float sched_getMonth(void* obj)
 //get type information from the scheduler info structure
 int sched_getType(void* obj)
 {
-	schedInfo_t* schedPtr = (schedInfo_t*)obj;  // get pointer
+	schedInfo_t* schedPtr = (schedInfo_t*)obj;  // using catsting obj and use struct schedInfo
 	
 	//error handler
 	if(schedPtr == NULL)  
@@ -159,7 +159,7 @@ int sched_getType(void* obj)
 //get place string information from the scheduler info structure
 char* sched_getPlace(void* obj)
 {
-	schedInfo_t* schedPtr = (schedInfo_t*)obj;  // get pointer
+	schedInfo_t* schedPtr = (schedInfo_t*)obj;  // using catsting obj and use struct schedInfo
 	
 	//error handler
 	if(schedPtr == NULL)  
@@ -172,16 +172,16 @@ char* sched_getPlace(void* obj)
 	return schedPtr->place;
 }
 
-//convert the name of the type through return value
+//convert the name of the type using return value
 int sched_convertType(char* typeName)
 {
-	if (strcmp(typeName, "drama") == 0) { return 0; }
-	else if (strcmp(typeName, "movie") == 0) { return 1; }
-	else if (strcmp(typeName, "advertisement") == 0) { return 2; }
-	else if (strcmp(typeName, "entertainment") == 0) { return 3; }
-	else if (strcmp(typeName, "meeting") == 0) { return 4; }
-	else if (strcmp(typeName, "fitness") == 0) { return 5; }
-	else if (strcmp(typeName, "privacy") == 0) { return 6; }
-	else return -1;
+	if (strcmp(typeName, "drama") == 0) { return 0; }                // if the typeName is drama, return 0
+	else if (strcmp(typeName, "movie") == 0) { return 1; }           // if the typeName is movie, return 1
+	else if (strcmp(typeName, "advertisement") == 0) { return 2; }   // if the typeName is advertisement, return 2
+	else if (strcmp(typeName, "entertainment") == 0) { return 3; }   // if the typeName is entertainment, return 3
+	else if (strcmp(typeName, "meeting") == 0) { return 4; }         // if the typeName is meeting, return 4
+	else if (strcmp(typeName, "fitness") == 0) { return 5; }         // if the typeName is fitness, return 5
+	else if (strcmp(typeName, "privacy") == 0) { return 6; }         // if the typeName is privacy, return 6
+	else return -1;                                                  // if the typeName is invalid, return -1
 }
 
